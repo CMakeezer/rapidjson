@@ -1,20 +1,11 @@
-find_package(GTestSrc)
-
-IF(GTESTSRC_FOUND)
+find_package(GTest)
+IF(GTEST_FOUND)
     enable_testing()
 
-    if (WIN32 AND (NOT CYGWIN) AND (NOT MINGW))
-        set(gtest_disable_pthreads ON)
-        set(gtest_force_shared_crt ON)
-    endif()
-
-    add_subdirectory(${GTEST_SOURCE_DIR} ${CMAKE_BINARY_DIR}/googletest)
-    include_directories(SYSTEM ${GTEST_INCLUDE_DIR})
-
-    set(TEST_LIBRARIES gtest gtest_main)
+    set(TEST_LIBRARIES GTest::GTest GTest::Main)
 
     add_custom_target(tests ALL)
     add_subdirectory(perftest)
     add_subdirectory(unittest)
 
-ENDIF(GTESTSRC_FOUND)
+ENDIF(GTEST_FOUND)
