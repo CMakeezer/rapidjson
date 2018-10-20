@@ -1,11 +1,7 @@
 find_package(GTest)
-IF(GTEST_FOUND)
-    enable_testing()
+enable_testing()
+set(TEST_LIBRARIES GTest::GTest;GTest::Main)
 
-    set(TEST_LIBRARIES GTest::GTest GTest::Main)
-
-    add_custom_target(tests ALL)
-    add_subdirectory(perftest)
-    add_subdirectory(unittest)
-
-ENDIF(GTEST_FOUND)
+add_custom_target(tests ALL)
+add_subdirectory(perftest)
+add_subdirectory(unittest)
